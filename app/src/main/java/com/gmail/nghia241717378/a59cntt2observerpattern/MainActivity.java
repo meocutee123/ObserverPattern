@@ -1,7 +1,6 @@
 package com.gmail.nghia241717378.a59cntt2observerpattern;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -18,7 +17,6 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements MyDialog.onMyDateChangeListener {
      EditText edtNgayDi, edtGioDi;
      ImageView imgDatePicker, imgTimePicker;
-     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements MyDialog.onMyDate
         imgDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyDialog myDialog = new MyDialog(Calendar.getInstance(), MainActivity.this, MainActivity.this);
+                MyDialog myDialog = new MyDialog(Calendar.getInstance(),
+                        MainActivity.this,
+                        MainActivity.this);
                 myDialog.showDialog();
 
             }
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity implements MyDialog.onMyDate
             final int minute = calendar.get(Calendar.MINUTE);
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         edtGioDi.setText(hourOfDay + ":" + minute);
                     }
-                }, hour, minute, DateFormat.is24HourFormat(context));
+                }, hour, minute, DateFormat.is24HourFormat(MainActivity.this));
                 timePickerDialog.show();
 
             }

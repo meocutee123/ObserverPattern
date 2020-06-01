@@ -19,18 +19,21 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/edtNgayVe"
+            android:textSize="20sp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ngày đi" />
         <EditText
         android:id="@+id/edtNgayDi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Ngày đi" />
-    <EditText
-        android:id="@+id/edtNgayVe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Ngày về" />
+
 
     <ImageView
         android:id="@+id/imgDatePicker"
@@ -55,18 +58,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/edtGioVe"
+            android:textSize="20sp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="8dp"
+            android:text="Giờ đi" />
         <EditText
             android:id="@+id/edtGioDi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Giờ đi" />
-        <EditText
-            android:id="@+id/edtGioVe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Giờ về" />
+
 
         <ImageView
             android:id="@+id/ImgTimePicker"

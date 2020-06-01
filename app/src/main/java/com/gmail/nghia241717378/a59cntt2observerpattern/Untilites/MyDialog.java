@@ -11,6 +11,7 @@ public class MyDialog {
     private onMyDateChangeListener onMyDateChangeListener;
     private Context context;
 
+
     public MyDialog(Calendar calendar, MyDialog.onMyDateChangeListener onMyDateChangeListener, Context context) {
         this.calendar = calendar;
         this.onMyDateChangeListener = onMyDateChangeListener;

@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 
 import com.gmail.nghia241717378.a59cntt2observerpattern.Untilites.MyDialog;
+import com.gmail.nghia241717378.a59cntt2observerpattern.Untilites.MyTimeDialog;
+
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements MyDialog.onMyDateChangeListener {
+public class MainActivity extends AppCompatActivity implements MyDialog.onMyDateChangeListener, MyTimeDialog.OnMyTimeChangeListener {
      EditText edtNgayDi, edtGioDi;
      ImageView imgDatePicker, imgTimePicker;
     @Override
@@ -41,26 +43,17 @@ public class MainActivity extends AppCompatActivity implements MyDialog.onMyDate
         imgDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyDialog myDialog = new MyDialog(Calendar.getInstance(),
-                        MainActivity.this,
-                        MainActivity.this);
+                MyDialog myDialog = new MyDialog(Calendar.getInstance(),MainActivity.this,MainActivity.this);
                 myDialog.showDialog();
 
             }
         });
         imgTimePicker.setOnClickListener(new View.OnClickListener() {
-            Calendar calendar = Calendar.getInstance();
-            final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            final int minute = calendar.get(Calendar.MINUTE);
+
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        edtGioDi.setText(hourOfDay + ":" + minute);
-                    }
-                }, hour, minute, DateFormat.is24HourFormat(MainActivity.this));
-                timePickerDialog.show();
+                MyTimeDialog myTimeDialog = new MyTimeDialog(MainActivity.this, Calendar.getInstance(), MainActivity.this);
+                myTimeDialog.showTimeDialog();
 
             }
         });
@@ -75,4 +68,12 @@ public class MainActivity extends AppCompatActivity implements MyDialog.onMyDate
         edtNgayDi.setText(stringBuilder.toString());
     }
 
+    @Override
+    public void timeUpdate(Calendar newTime) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(newTime.get(Calendar.HOUR_OF_DAY)).append(":")
+                .append(newTime.get(Calendar.MINUTE));
+
+        edtGioDi.setText(stringBuilder.toString());
+    }
 }
